@@ -2,11 +2,15 @@ import streamlit as st
 import requests
 import json
 import time
+from dotenv import load_dotenv
+import os
 
-# Configuração da API
-BASE_API_URL = "https://langflow.ask4me.com.br"
-FLOW_ID = "d41d7fa4-8798-43e2-bcc5-00f6855166a5"
-API_KEY = "sk-YQAjTVT05Li9917J_Qi2Db9ySyrzs_flmW9Seh5aPLw"  # Se necessário, adicione aqui a chave de autenticação
+# Carrega as variáveis de ambiente definidas no arquivo .env
+load_dotenv()
+
+BASE_API_URL = os.getenv("BASE_API_URL")
+FLOW_ID = os.getenv("FLOW_ID")
+API_KEY = os.getenv("API_KEY")
 
 # Configuração inicial do Streamlit
 st.set_page_config(
