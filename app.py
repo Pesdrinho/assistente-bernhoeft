@@ -10,7 +10,7 @@ API_KEY = st.secrets["API_KEY"]
 
 # Configuração inicial do Streamlit
 st.set_page_config(
-    page_title="Assistente Bernhoft",
+    page_title="Assistente Bernhoeft",
     page_icon="🤖",
     layout="centered",
 )
@@ -80,7 +80,7 @@ st.markdown(
 )
 
 # Cabeçalho
-st.markdown("<h2 style='text-align: center;'>Assistente Bernhoft 🤖</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center;'>Assistente Bernhoeft 🤖</h2>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; color: gray;'>Converse com nosso assistente de IA.</p>", unsafe_allow_html=True)
 
 # Inicializando o chat
