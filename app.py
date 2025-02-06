@@ -8,9 +8,9 @@ import os
 # Carrega as variáveis de ambiente definidas no arquivo .env
 load_dotenv()
 
-st.secrets["BASE_API_URL"]
-st.secrets["FLOW_ID"]
-st.secrets["API_KEY"]
+BASE_API_URL = st.secrets["BASE_API_URL"]
+FLOW_ID = st.secrets["FLOW_ID"]
+API_KEY = st.secrets["API_KEY"]
 
 # Configuração inicial do Streamlit
 st.set_page_config(
