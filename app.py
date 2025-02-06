@@ -2,11 +2,7 @@ import streamlit as st
 import requests
 import json
 import time
-from dotenv import load_dotenv
 import os
-
-# Carrega as variáveis de ambiente definidas no arquivo .env
-load_dotenv()
 
 BASE_API_URL = st.secrets["BASE_API_URL"]
 FLOW_ID = st.secrets["FLOW_ID"]
