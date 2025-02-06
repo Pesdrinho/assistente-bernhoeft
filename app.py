@@ -147,20 +147,28 @@ for msg in st.session_state.messages:
 
 st.markdown("</div>", unsafe_allow_html=True)
 
-# Criação do formulário para entrada do usuário com clear_on_submit=True
-with st.form("chat_form", clear_on_submit=True):
-    user_input = st.text_input("Digite sua mensagem:", placeholder="Pergunte algo para o Assistente Bernhoft...")
-    submitted = st.form_submit_button("Enviar")
+# ---- Lógica de recebimento de mensagem modificada (baseada no código de referência) ----
 
-    if submitted and user_input.strip():
-        # Adiciona a mensagem do usuário ao chat imediatamente
+# Inicializa o estágio caso não exista
+if "stage" not in st.session_state:
+    st.session_state.stage = "user"
+
+if st.session_state.stage == "user":
+    # Recebe a mensagem do usuário via st.chat_input (sem o uso de form)
+    user_input = st.chat_input("Digite sua mensagem...")
+    if user_input and user_input.strip():
+        # Adiciona a mensagem do usuário ao histórico imediatamente
         st.session_state.messages.append({"role": "user", "content": user_input})
-
-        # Simula o carregamento enquanto aguarda a resposta
-        with st.spinner("Assistente está digitando..."):
-            time.sleep(1)  # Pequeno delay para melhorar a fluidez
-            bot_response = call_langflow_api(user_input)
-
-        # Adiciona resposta do assistente ao histórico
-        st.session_state.messages.append({"role": "bot", "content": bot_response})
+        st.session_state.stage = "assistant"  # Muda o estágio para processar a resposta
         st.rerun()
+
+elif st.session_state.stage == "assistant":
+    # Usa a última mensagem do usuário para chamar a API
+    last_user_message = st.session_state.messages[-1]["content"]
+    with st.spinner("Assistente está digitando..."):
+        time.sleep(1)  # Pequeno delay para melhorar a fluidez
+        bot_response = call_langflow_api(last_user_message)
+    # Adiciona a resposta do assistente ao histórico
+    st.session_state.messages.append({"role": "bot", "content": bot_response})
+    st.session_state.stage = "user"  # Retorna ao estágio de input do usuário
+    st.rerun()
