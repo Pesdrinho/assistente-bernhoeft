@@ -3,3 +3,5 @@
 
 # Ignorar a pasta do ambiente virtual
 venv/
+
+.devcontainer/
