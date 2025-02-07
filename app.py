@@ -21,7 +21,7 @@ st.markdown(
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #F4F1E0;
         }
         .chat-container {
             max-width: 700px;

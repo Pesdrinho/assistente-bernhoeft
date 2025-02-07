@@ -5,3 +5,5 @@
 venv/
 
 .devcontainer
+
+secrets.toml
